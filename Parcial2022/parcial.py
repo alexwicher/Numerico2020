@@ -1,8 +1,8 @@
-# Nombre -> Alex Ivan Wicher DNI -> 41263038 Laboratorio de Analisis Numerico FAMAF
 # Python 3.8.10
-#
-#
-#
+# Nombre -> Alex Ivan Wicher DNI -> 41263038 Laboratorio de Analisis Numerico I FAMAF
+# Simplemente correr 'python3 parcial.py' en la terminal desde la carpeta que lo contiene
+# Requiere matplotlib -> pip install matplotlib
+# PCInfo.txt contiene informacion de la maquina donde fue hecho y probado el codigo
 
 import math
 
@@ -95,7 +95,7 @@ def rsteffensen(fun, x0, err, mit):
     x_n_p = 0
 
     for k in range(mit):
-        fx = fun(x_n) # Ya no hay derivada ahora
+        fx = fun(x_n)  # Ya no hay derivada ahora
         hx.append(x_n)
         hf.append(fx)
         if abs(fx) < abs(err):
@@ -104,7 +104,7 @@ def rsteffensen(fun, x0, err, mit):
         if x_n != 0 and (abs_x_n / abs(x_n)) < abs(err):
             break
         x_n_p = x_n
-        x_n = x_n - pow(fx, 2) / (fun(x_n + fx) - fx) # Steffensen aca
+        x_n = x_n - pow(fx, 2) / (fun(x_n + fx) - fx)  # Steffensen aca
     return hx, hf
 
 
