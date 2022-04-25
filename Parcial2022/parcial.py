@@ -27,7 +27,7 @@ def f_inner(x, i):
 
 # 1)
 
-def terminos_taylor(n):
+def serie_seno(n):
     res = "0"
     for i in range(0, n):
         first = ((pow(-1, i)) / math.factorial(2 * i + 1))
@@ -38,7 +38,7 @@ def terminos_taylor(n):
 
 print('EJERCICIO 1 \n')
 
-terminos_taylor(5)
+serie_seno(5)
 
 
 # 2)
@@ -53,7 +53,7 @@ def graf_funcion_f(I, fun):
 
 
 print('EJERCICIO 2 (grafico) \n')
-
+# Con 11 terminos taylor aproxima muy bien en el intervalo (range(0,10))
 graf_funcion_f((0, 6.4), lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]))
 
 
@@ -68,6 +68,7 @@ def biseccion(fun, I, err, mit):
         hx.append(c)
         hf.append(fun(c))
         if abs(fun(c)) < err:
+            print('Iteracion -> ', str(i), " Tolerancia -> ", str(err), " alcanzada.\n")
             break
         if fun(a) * fun(c) < 0:
             b = c
@@ -82,7 +83,6 @@ def biseccion(fun, I, err, mit):
 print('EJERCICIO 3 \n')
 biseccion(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), (2.5, 3.5), 1e-5, 100)
 biseccion(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), (4.5, 5.5), 1e-5, 100)
-graf_funcion_f((0, 6.4), lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]))
 
 # 4)
 
@@ -93,7 +93,6 @@ def rsteffensen(fun, x0, err, mit):
     hx, hf = [], []
     x_n = x0
     x_n_p = 0
-
     for k in range(mit):
         fx = fun(x_n)  # Ya no hay derivada ahora
         hx.append(x_n)
@@ -105,21 +104,27 @@ def rsteffensen(fun, x0, err, mit):
             break
         x_n_p = x_n
         x_n = x_n - pow(fx, 2) / (fun(x_n + fx) - fx)  # Steffensen aca
+    print('Resultado c -> ', str(hx[len(hx) - 1]), ' f(c) -> ', str(hf[len(hf) - 1]), '\n')
     return hx, hf
+
+
+rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 2.5, 1e-5, 100)
+rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 3.5, 1e-5, 100)  # El metodo no funciono para 4.5
 
 
 # 5)
 
 def serie_seno(x, mit, tol):
-    res = 0
+    x_n = 0
+    x_n_p = 0
     for i in range(0, mit):
-        res += f_inner(x, i)
-        # print("Iteracion -> ", str(i), " Resultado -> ", str(res), " \n")
-        if i != 0 and math.fabs(res - f_inner(x, i - 1)) < tol:
-            print("Tolerancia -> ", str(tol), " alcanzada.\n")
+        x_n += f_inner(x, i)
+        if i != 0 and abs(x_n - x_n_p) < tol:
+            print('Iteracion -> ', str(i), " Tolerancia -> ", str(tol), " alcanzada.\n")
             break
-
-    print("Resultado -> ", str(res), " Iteraciones -> ", str(mit), " Real -> ", str(math.sin(x)), " \n")
+        x_n_p = x_n
+    print("Resultado -> ", str(x_n), " Real -> ", str(math.sin(x)), " \n")
+    return x_n
 
 
 print('EJERCICIO 5 \n')
