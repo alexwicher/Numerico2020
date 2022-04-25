@@ -109,7 +109,7 @@ def rsteffensen(fun, x0, err, mit):
 
 
 rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 2.5, 1e-5, 100)
-rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 3.5, 1e-5, 100)  # El metodo no funciono para 4.5
+rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 4.8, 1e-5, 100)  # El metodo no funciono para 4.5
 
 
 # 5)
