@@ -92,43 +92,37 @@ print('EJERCICIO 4 mirar codigo \n')
 def rsteffensen(fun, x0, err, mit):
     hx, hf = [], []
     x_n = x0
-    x_n_p = 0
     for k in range(mit):
         fx = fun(x_n)  # Ya no hay derivada ahora
         hx.append(x_n)
         hf.append(fx)
         if abs(fx) < abs(err):
+            print('1Iteracion -> ', str(k), " Tolerancia -> ", str(err), " alcanzada.\n")
             break
-        abs_x_n = abs(x_n - x_n_p)
-        if x_n != 0 and (abs_x_n / abs(x_n)) < abs(err):
-            break
-        x_n_p = x_n
         x_n = x_n - pow(fx, 2) / (fun(x_n + fx) - fx)  # Steffensen aca
     print('Resultado c -> ', str(hx[len(hx) - 1]), ' f(c) -> ', str(hf[len(hf) - 1]), '\n')
     return hx, hf
 
-
-rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 2.5, 1e-5, 100)
-rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 4.8, 1e-5, 100)  # El metodo no funciono para 4.5
-
-
 # 5)
-
-def serie_seno(x, mit, tol):
-    x_n = 0
-    x_n_p = 0
-    for i in range(0, mit):
-        x_n += f_inner(x, i)
-        if i != 0 and abs(x_n - x_n_p) < tol:
-            print('Iteracion -> ', str(i), " Tolerancia -> ", str(tol), " alcanzada.\n")
-            break
-        x_n_p = x_n
-    print("Resultado -> ", str(x_n), " Real -> ", str(math.sin(x)), " \n")
-    return x_n
-
 
 print('EJERCICIO 5 \n')
 
-serie_seno(3, 100, 1e-5)
-serie_seno(6, 100, 1e-5)
-serie_seno(4.5, 100, 1e-5)
+rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 3, 1e-5, 100)
+rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 6, 1e-5, 100)
+rsteffensen(lambda x: math.fsum([f_inner(x, b) for b in range(0, 5)]), 4.5, 1e-5, 100)  # No encuentra la raiz
+
+# def serie_seno(x, mit, tol):
+#     x_n = 0
+#     x_n_p = 0
+#     for i in range(0, mit):
+#         x_n += f_inner(x, i)
+#         if i != 0 and abs(x_n - x_n_p) < tol:
+#             print('Iteracion -> ', str(i), " Tolerancia -> ", str(tol), " alcanzada.\n")
+#             break
+#         x_n_p = x_n
+#     print("Resultado -> ", str(x_n), " Real -> ", str(math.sin(x)), " \n")
+#     return x_n
+
+# serie_seno(3, 100, 1e-5)
+# serie_seno(6, 100, 1e-5)
+# serie_seno(4.5, 100, 1e-5)
