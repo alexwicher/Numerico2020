@@ -1,0 +1,54 @@
+
+>> inxi -F
+
+System:
+  Host: rogue-hal Kernel: 5.4.0-91-generic x86_64 bits: 64
+  Desktop: Cinnamon 5.2.7 Distro: Linux Mint 20.3 Una
+Machine:
+  Type: Laptop System: Micro-Star product: GF65 Thin 10SDR v: REV:1.0
+  serial: <superuser/root required>
+  Mobo: Micro-Star model: MS-16W1 v: REV:1.0
+  serial: <superuser/root required> UEFI: American Megatrends
+  v: E16W1IMS.50B date: 05/19/2020
+Battery:
+  ID-1: BAT1 charge: 43.8 Wh condition: 43.8/51.3 Wh (85%)
+CPU:
+  Topology: 6-Core model: Intel Core i7-10750H bits: 64 type: MT MCP
+  L2 cache: 12.0 MiB
+  Speed: 2358 MHz min/max: 800/5000 MHz Core speeds (MHz): 1: 4688 2: 4453
+  3: 4033 4: 4274 5: 4696 6: 2733 7: 4681 8: 3811 9: 4102 10: 2082 11: 3807
+  12: 4675
+Graphics:
+  Device-1: Intel UHD Graphics driver: i915 v: kernel
+  Device-2: NVIDIA TU116M [GeForce GTX 1660 Ti Mobile] driver: N/A
+  Display: x11 server: X.Org 1.20.11 driver: modesetting
+  unloaded: fbdev,vesa resolution: 1920x1080~120Hz
+  OpenGL: renderer: Mesa Intel UHD Graphics (CML GT2) v: 4.6 Mesa 21.2.6
+Audio:
+  Device-1: Intel Comet Lake PCH cAVS driver: snd_hda_intel
+  Device-2: NVIDIA TU116 High Definition Audio driver: snd_hda_intel
+  Sound Server: ALSA v: k5.4.0-91-generic
+Network:
+  Device-1: Intel Wi-Fi 6 AX201 driver: iwlwifi
+  IF: wlo1 state: up mac: 34:2e:b7:7a:74:16
+  Device-2: Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet
+  driver: r8169
+  IF: enp3s0 state: down mac: 2c:f0:5d:67:9e:fb
+Drives:
+  Local Storage: total: 715.41 GiB used: 25.62 GiB (3.6%)
+  ID-1: /dev/nvme0n1 vendor: Kingston model: OM8PCP3512F-AI1
+  size: 476.94 GiB
+  ID-2: /dev/sda vendor: Toshiba model: KSG60ZMV256G M.2 2280 256GB
+  size: 238.47 GiB
+Partition:
+  ID-1: / size: 65.16 GiB used: 9.63 GiB (14.8%) fs: xfs dev: /dev/nvme0n1p3
+  ID-2: /home size: 390.96 GiB used: 15.99 GiB (4.1%) fs: xfs
+  dev: /dev/nvme0n1p4
+  ID-3: swap-1 size: 16.76 GiB used: 0 KiB (0.0%) fs: swap
+  dev: /dev/nvme0n1p2
+Sensors:
+  System Temperatures: cpu: 62.0 C mobo: N/A
+  Fan Speeds (RPM): N/A
+Info:
+  Processes: 322 Uptime: 5h 28m Memory: 15.46 GiB used: 4.15 GiB (26.8%)
+  Shell: bash inxi: 3.0.38
