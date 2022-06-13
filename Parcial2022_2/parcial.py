@@ -35,7 +35,7 @@ def ilagrange(xList, yList, zList):
             p += y * Li(x, i)
         return p
 
-    return [P(z) for z in zList]
+    return [P(z) for z in zList]  # Aproximaciones hechas con el polinomio interpolante.
 
 
 # 1 a)
@@ -43,56 +43,56 @@ def ilagrange(xList, yList, zList):
 raw = pd.read_csv('irma.csv', header=None)
 hr, long, lat = np.array(raw[0]), np.array(raw[1]), np.array(raw[2])
 
-f = 'sad'
-plt.scatter(long, lat, color='red')
+plt.scatter(long, lat, color='red', label='1)a) Data')
 plt.xlabel('Longitud')
 plt.ylabel('Latitud')
+plt.legend()
 plt.show()
 
 
 # 1 b)
-# TODO: corrigir por falta de interpretacion de consigna ...
 
-def longitud(t):
+def longitud():
     hourly = np.linspace(0, 24, 24)
     grange = ilagrange(hr, long, hourly)
     plt.scatter(hr, long, color='red', label='Data')
-    plt.plot(hourly, grange, label='Grange-Longitud', color='purple')
+    plt.plot(hourly, grange, label='1)b) Grange-Longitud', color='purple')
     cubic_spline = sp.interpolate.interp1d(hr, long, kind='cubic', bounds_error=False)
-    spline_data = cubic_spline(hourly)
-    plt.plot(hourly, spline_data, label='Spline^3-Longitud', color='yellow')
+    spline_data = cubic_spline(hourly)  # Aproximaciones hechas con el spline cubico.
+    plt.plot(hourly, spline_data, label='1)b) Spline^3-Longitud', color='yellow')
     plt.xlabel('Hora')
     plt.ylabel('Longitud')
     plt.legend()
     plt.show()
 
 
-longitud(0)
+longitud()
 
 
-def latitud(t):
+def latitud():
     hourly = np.linspace(0, 24, 24)
     grange = ilagrange(hr, lat, hourly)
     plt.scatter(hr, lat, color='red', label='Data')
-    plt.plot(hourly, grange, label='Grange-Latitud', color='purple')
+    plt.plot(hourly, grange, label='1)b) Grange-Latitud', color='purple')
     cubic_spline = sp.interpolate.interp1d(hr, lat, kind='cubic', bounds_error=False)
     spline_data = cubic_spline(hourly)
-    plt.plot(hourly, spline_data, label='Spline^3-Latitud', color='yellow')
+    plt.plot(hourly, spline_data, label='1)b) Spline^3-Latitud', color='yellow')
     plt.xlabel('Hora')
     plt.ylabel('Latitud')
     plt.legend()
     plt.show()
 
 
-latitud(0)
+latitud()
 
 # 2 a)
 xl = [0, 1.5, 2, 2.9, 4, 5.6, 6, 7.1, 8.05, 9.2, 10, 11.3, 12]
 yl = [0.1, 0.2, 1, 0.56, 1.5, 2.0, 2.3, 1.3, 0.8, 0.6, 0.4, 0.3, 0.2]
 z = 10
-plt.scatter(xl, yl, label='Tierra-perfil', color='brown')
+plt.scatter(xl, yl, label='2)a) Tierra-perfil', color='brown')
 plt.xlabel('Ancho-X')
-plt.xlabel('Altura-Y')
+plt.ylabel('Altura-Y')
+plt.legend()
 plt.show()
 
 
@@ -109,4 +109,4 @@ def trapecio_adaptativo(xlist, ylist):
 # 2 c)
 
 res = trapecio_adaptativo(xl, yl) * 10
-print(f'2)c) Para nivelar a la altura de 0 metros se removeran {math.ceil(res)} metros cubicos')
+print(f'2)c) Para nivelar a la altura aprox. de 0 metros se removeran {math.ceil(res)} metros cubicos')
